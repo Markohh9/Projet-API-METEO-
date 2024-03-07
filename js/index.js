@@ -1,7 +1,8 @@
 const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
 const details = document.querySelector('.details');
-
+const time = document.querySelector('img.time');
+const icon = document.querySelector('.icon img');
 
 const updateUI = (data) => {
 
@@ -14,13 +15,24 @@ const updateUI = (data) => {
 
     // update UI when city selected
     details.innerHTML = `
-    <h5 class="my-3">${cityDets.EnglishName}</h5>
-        <div class="my-3">${weather.WeatherText}</div>
+    <div class="my-3">${weather.WeatherText}</div>
+    <h5 class="my-3">${cityDets.EnglishName}, ${cityDets.Country.EnglishName}, ${cityDets.AdministrativeArea.EnglishName}</h5>
+
+        
         <div class="display-4 my-4">
             <span>${weather.Temperature.Metric.Value}</span>
             <span>&deg</span>
         </div>
     `;
+
+    // update Day / Night icon and Images
+
+    const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+    icon.setAttribute('src', iconSrc);
+
+    let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg' ;
+    time.setAttribute('src', timeSrc);
+
 
     // remove d-none class if city selected
 
@@ -52,3 +64,4 @@ cityForm.addEventListener('submit', e => {
     .then(data => updateUI(data))
     .catch(error => console.log(err));
 });
+
