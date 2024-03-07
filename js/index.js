@@ -24,7 +24,7 @@ const updateUI = (data) => {
             <span>&deg</span>
         </div>
     `;
-
+    
     // update Day / Night icon and Images
 
     const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
@@ -64,4 +64,3 @@ cityForm.addEventListener('submit', e => {
     .then(data => updateUI(data))
     .catch(error => console.log(err));
 });
-
