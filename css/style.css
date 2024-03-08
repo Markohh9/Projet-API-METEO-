@@ -1,17 +1,128 @@
-body {
-    background: whitesmoke;
-    letter-spacing: 0.2em;
-    font-size: 0.8em;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.container-body {
+    justify-content: center;
+    display: flex;
+    background-color: #0A1828;
 }
 
-.fullpage{
-    max-width: 600px;
+.title-txt{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    font-size: 4em;
+    justify-content: center;
+    display: flex;
+    color: whitesmoke;
+}
+
+.classform{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-txt{
+    margin: auto;
+    margin-bottom: 16px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    color: whitesmoke;
+}
+
+
+
+input[type=text] {
+    border: 2px solid whitesmoke;
+    border-radius: 8px;
+    background-color: #1e436d;
+  }
+
+  input[type=text]:focus {
+    border: 3px solid whitesmoke;
+  }
+
+.form-input{
+    margin: auto;
+    margin-bottom: 32px;
+    width: 400px;
+    height: 48px;
+    font-family: "Montserrat", sans-serif;
+    color: whitesmoke;
+    padding-left: 16px;
+}
+
+.card{
+    border-radius: 19px;
+    border: solid 2px;
+    height: 515px;
+}
+
+.weather-name{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 2em;
+    margin: auto;
+    margin-bottom: 8px;
+    margin-left: 0;
+    margin-top: 8px;
+    color: whitesmoke;
+}
+
+.city-name-desc{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    margin: auto;
+    margin-left: 2px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    color: whitesmoke;
+}
+
+.align-top-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.txt-top-card{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.temp-txt{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 4em;
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    color: whitesmoke;
+}
+
+.details{
+    margin-top: 16px;
+}
+
+.d-none{
+    display: none;
+} 
+
+
+.img-weather{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .icon{
     position: relative;
-    top: -50px;
-    border-radius: 50%;
+    top: -250px;
+    left: 150px;
+    height: 100px;
     width: 100px;
-    margin-bottom: -50px;
 }
