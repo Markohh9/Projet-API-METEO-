@@ -4,8 +4,15 @@
 .container-body {
     justify-content: center;
     display: flex;
-    background-color: #0A1828;
+    background-image: url('../img/weather/cloud-day.gif');
+    background-size: cover;
+    opacity: 1;
+    background-repeat: no-repeat;
+    
 }
+
+
+
 
 .title-txt{
     font-family: "Montserrat", sans-serif;
@@ -114,15 +121,19 @@ input[type=text] {
 } 
 
 
+.cardimgtemp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .img-weather{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    width: 100%;
 }
 
 .icon{
-    position: relative;
-    top: -250px;
-    left: 150px;
-    height: 100px;
-    width: 100px;
+
 }
