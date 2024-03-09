@@ -4,6 +4,22 @@ const details = document.querySelector('.details');
 const time = document.querySelector('img.time');
 const icon = document.querySelector('.icon img');
 
+// Get Time of city //
+
+const getLocalTime = (timeZone) => {
+    const currentTime = new Date();
+    const timeOptions = {
+        timeZone,
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    };
+    const formatter = new Intl.DateTimeFormat('fr-FR', timeOptions);
+    return formatter.format(currentTime);
+}
+
+
+
 const updateUI = (data) => {
 
 
@@ -14,7 +30,13 @@ const updateUI = (data) => {
         weather
     } = data;
 
+// Get Time of city //
+const localTime = getLocalTime(cityDets.TimeZone.Name);
+console.log("Local time:", localTime);
 
+// Get weather icon code
+const weatherIconCode = weather.WeatherIcon;
+console.log(weatherIconCode);
 
     // update UI when city selected
     details.innerHTML = `
@@ -30,8 +52,9 @@ const updateUI = (data) => {
             <span>${weather.Temperature.Metric.Value}</span>
             <span>&deg</span>
         </div>
-    </div>     
+    </div>   
     `;
+
 
     // update Day / Night icon and Images
 
@@ -40,6 +63,7 @@ const updateUI = (data) => {
 
     let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg';
     time.setAttribute('src', timeSrc);
+    
 
 
     // remove d-none class if city selected
@@ -50,6 +74,10 @@ if (card.classList.contains('d-none')) {
 }
 
 console.log(data)
+
+////
+
+
 
 }
 
@@ -110,3 +138,4 @@ const backgroundImages = {
         'Tempete' : '../img/weather/storm-night.gif'
     }
 };
+
