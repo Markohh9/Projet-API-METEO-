@@ -121,6 +121,18 @@ console.log("Time of day:", getTimeOfDay(localTime));
 const backgroundImage = backgroundImages[timeOfDay][weatherType];
 console.log("Chemin du fond d'écran:", backgroundImage);
 
+// Changing the background with the backgroundImage
+
+const changeContainerBackground = (backgroundImageUrl) => {
+    const containerBody = document.querySelector('.container-body');
+    containerBody.style.backgroundImage = `url(${backgroundImageUrl})`;
+    containerBody.style.backgroundSize = 'cover';
+    containerBody.style.opacity = '1';
+    containerBody.style.backgroundRepeat = 'no-repeat';
+};
+
+changeContainerBackground(backgroundImage);
+
 
 
 
