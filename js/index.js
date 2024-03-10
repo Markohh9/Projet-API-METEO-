@@ -4,22 +4,6 @@ const details = document.querySelector('.details');
 const time = document.querySelector('img.time');
 const icon = document.querySelector('.icon img');
 
-// Get Time of city //
-
-const getLocalTime = (timeZone) => {
-    const currentTime = new Date();
-    const timeOptions = {
-        timeZone,
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-    };
-    const formatter = new Intl.DateTimeFormat('fr-FR', timeOptions);
-    return formatter.format(currentTime);
-}
-
-
-
 const updateUI = (data) => {
 
 
@@ -30,13 +14,55 @@ const updateUI = (data) => {
         weather
     } = data;
 
+
+    // Get Time of city //
+
+    const getLocalTime = (timeZone) => {
+        const currentTime = new Date();
+        const timeOptions = {
+            timeZone,
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        };
+        const formatter = new Intl.DateTimeFormat('fr-FR', timeOptions);
+        return formatter.format(currentTime);
+    }
+getLocalTime();
+
+
+    // change String to date the time of the city // 
+
+
+
 // Get Time of city //
-const localTime = getLocalTime(cityDets.TimeZone.Name);
+const cityTimeZone = cityDets.TimeZone.Name;
+const localTime = getLocalTime(cityTimeZone);
 console.log("Local time:", localTime);
 
 // Get weather icon code
 const weatherIconCode = weather.WeatherIcon;
-console.log(weatherIconCode);
+console.log("Weather icon code:", weatherIconCode);
+
+// defined the night/day/twilight //
+const getTimeOfDay = (localTime) => {
+    const hour = parseInt(localTime.split(':')[0]); // Extraire l'heure de la chaîne de caractères
+
+    if (hour >= 8 && hour < 18) {
+        return "Jour";
+    } else if ((hour >= 6 && hour < 8) || (hour >= 18 && hour < 21)) {
+        return "Crépuscule";
+    } else {
+        return "Nuit";
+    }
+};
+
+
+console.log("Time of day:", getTimeOfDay(localTime));
+
+
+
+
 
     // update UI when city selected
     details.innerHTML = `
