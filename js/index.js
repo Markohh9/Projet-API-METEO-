@@ -82,17 +82,17 @@ const updateUI = (data) => {
 
     const backgroundImages = {
         'day': {
-            'Soleil': '../img/weather/sun-day.gif',
-            'Nuageux': '../img/weather/cloud-day.gif',
-            'Pluie': '../img/weather/rain-day.gif',
+            'Soleil': '../img/weather/sun-day.gif',  //
+            'Nuageux': '../img/weather/cloud-day.gif', //
+            'Pluie': '../img/weather/rain-day.gif', 
             'Vent': '../img/weather/wind-day.gif',
             'Brume': '../img/weather/fog-day.gif',
             'Neige': '../img/weather/snow-day.gif',
             'Tempete': '../img/weather/storm-day.gif'
         },
         'twilight': {
-            'Soleil': '../img/weather/sun-twilight.gif',
-            'Nuageux': '../img/weather/cloud-twilight.gif',
+            'Soleil': '../img/weather/sun-twilight.gif', //
+            'Nuageux': '../img/weather/cloud-twilight.gif', //
             'Pluie': '../img/weather/rain-twilight.gif',
             'Vent': '../img/weather/wind-twilight.gif',
             'Brume': '../img/weather/fog-twilight.gif',
@@ -100,8 +100,8 @@ const updateUI = (data) => {
             'Tempete': '../img/weather/storm-twilight.gif'
         },
         'night': {
-            'Soleil': '../img/weather/sun-night.gif',
-            'Nuageux': '../img/weather/cloud-night.gif',
+            'Soleil': '../img/weather/sun-night.gif', //
+            'Nuageux': '../img/weather/cloud-night.gif', //
             'Pluie': '../img/weather/rain-night.gif',
             'Vent': '../img/weather/wind-night.gif',
             'Brume': '../img/weather/fog-night.gif',
