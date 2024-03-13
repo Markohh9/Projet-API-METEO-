@@ -2,17 +2,27 @@ const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
 const details = document.querySelector('.details');
 const icon = document.querySelector('.icon img');
+const resetBtn = document.getElementById('changeCityBtn');
+const displayForm = document.getElementById('form');
+
 
 
 const updateUI = (data) => {
 
 
 
+
+
     // destruct properties
     const {
         cityDets,
-        weather
+        weather,
+        sunrise,
+        sunset
     } = data;
+
+
+
 
 
 
@@ -135,6 +145,45 @@ const updateUI = (data) => {
     changeContainerBackground(backgroundImage);
 
 
+    // get lat and long of the city//
+
+    const cityLat = cityDets.GeoPosition.Latitude;
+    const cityLong = cityDets.GeoPosition.Longitude;
+
+    console.log(cityLat)
+    console.log(cityLong)
+    console.log(getLocalTime(cityTimeZone))
+
+    // get sunset and sunrise with api //
+    async function getSun() {
+        const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${cityLat}&lng=${cityLong}&date=today`);
+        const result = await response.json();
+        console.log(result);
+
+        const sunrise = result.results.sunrise;
+        const sunset = result.results.sunset;
+
+        return {
+            sunrise,
+            sunset
+        };
+    }
+
+    getSun().then(({
+        sunrise,
+        sunset
+    }) => {
+        updateUI({
+            cityDets,
+            weather,
+            sunrise,
+            sunset
+        });
+    }).catch(error => console.log(error));
+
+
+
+
 
 
 
@@ -177,7 +226,7 @@ const updateUI = (data) => {
                         </div>
                         <div class="cardsectioninfo">
                             <p class="infocardtitle">Le soleil se lève à:</p>
-                            <span class="infocardhours">18h00</span>
+                            <span class="infocardhours">${sunrise}</span>
                         </div>
                     </div>
 
@@ -192,7 +241,7 @@ const updateUI = (data) => {
                         </div>
                         <div class="cardsectioninfo">
                             <p class="infocardtitle">Le soleil se couche à:</p>
-                            <span class="infocardhours">18h00</span>
+                            <span class="infocardhours">${sunset}</span>
                         </div>
                     </div>
 
@@ -213,17 +262,18 @@ const updateUI = (data) => {
 
 
     // remove d-none class if city selected
-
-    // remove d-none class if city selected
     if (card.classList.contains('d-none')) {
         card.classList.remove('d-none');
+        // Si la classe d-none a été supprimée, affichez le bouton resetBtn
+        resetBtn.style.display = 'block';
+        displayForm.style.display = 'none';
     }
+
 
 
 
     console.log(data)
 
-    ////
 
 
 
@@ -253,4 +303,10 @@ cityForm.addEventListener('submit', e => {
     updateCity(city)
         .then(data => updateUI(data))
         .catch(error => console.log(error));
+        
+});
+
+resetBtn.addEventListener('click', () => {
+    // Rechargez la page
+    window.location.reload();
 });
