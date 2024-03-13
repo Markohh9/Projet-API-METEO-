@@ -1,8 +1,8 @@
 const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
 const details = document.querySelector('.details');
-const time = document.querySelector('img.time');
 const icon = document.querySelector('.icon img');
+
 
 const updateUI = (data) => {
 
@@ -13,6 +13,7 @@ const updateUI = (data) => {
         cityDets,
         weather
     } = data;
+
 
 
     // Get Time of city //
@@ -82,7 +83,7 @@ const updateUI = (data) => {
 
     const backgroundImages = {
         'day': {
-            'Soleil': '../img/weather/sun-day.gif',  //
+            'Soleil': '../img/weather/sun-day.gif', //
             'Nuageux': '../img/weather/cloud-day.gif', //
             'Pluie': '../img/weather/rain-day.gif', //
             'Vent': '../img/weather/wind-day.gif', //
@@ -109,29 +110,29 @@ const updateUI = (data) => {
             'Tempete': '../img/weather/storm-night.gif' //
         }
     };
-    
+
     // Get Time of day and weather type
-const timeOfDay = getTimeOfDay(localTime);
-const weatherType = getWeatherType(weatherIconCode);
+    const timeOfDay = getTimeOfDay(localTime);
+    const weatherType = getWeatherType(weatherIconCode);
 
-console.log("Type de météo:", weatherType);
-console.log("Time of day:", getTimeOfDay(localTime));
+    console.log("Type de météo:", weatherType);
+    console.log("Time of day:", getTimeOfDay(localTime));
 
-// Get the path of the background image
-const backgroundImage = backgroundImages[timeOfDay][weatherType];
-console.log("Chemin du fond d'écran:", backgroundImage);
+    // Get the path of the background image
+    const backgroundImage = backgroundImages[timeOfDay][weatherType];
+    console.log("Chemin du fond d'écran:", backgroundImage);
 
-// Changing the background with the backgroundImage
+    // Changing the background with the backgroundImage
 
-const changeContainerBackground = (backgroundImageUrl) => {
-    const containerBody = document.querySelector('.container-body');
-    containerBody.style.backgroundImage = `url(${backgroundImageUrl})`;
-    containerBody.style.backgroundSize = 'cover';
-    containerBody.style.opacity = '1';
-    containerBody.style.backgroundRepeat = 'no-repeat';
-};
+    const changeContainerBackground = (backgroundImageUrl) => {
+        const containerBody = document.querySelector('.container-body');
+        containerBody.style.backgroundImage = `url(${backgroundImageUrl})`;
+        containerBody.style.backgroundSize = 'cover';
+        containerBody.style.opacity = '1';
+        containerBody.style.backgroundRepeat = 'no-repeat';
+    };
 
-changeContainerBackground(backgroundImage);
+    changeContainerBackground(backgroundImage);
 
 
 
@@ -147,7 +148,7 @@ changeContainerBackground(backgroundImage);
 
 
     // update UI when city selected
-    details.innerHTML = `
+    card.innerHTML = `
 
     <div class="align-top-card">
         <div class="txt-top-card">
@@ -160,7 +161,46 @@ changeContainerBackground(backgroundImage);
             <span>${weather.Temperature.Metric.Value}</span>
             <span>&deg</span>
         </div>
-    </div>   
+    </div>
+
+            <div class="cardimgtemp">
+                <div class="infoday">
+
+
+                    <div class="cardinfoday">
+                        <div class="cardsectioninfo">
+                            <p class="infocardtitle">Ce matin il fera</p>
+                            <div class="temp-txt">
+                                <span>${weather.Temperature.Metric.Value}</span>
+                                <span>&deg</span>
+                            </div>
+                        </div>
+                        <div class="cardsectioninfo">
+                            <p class="infocardtitle">Le soleil se lève à:</p>
+                            <span class="infocardhours">18h00</span>
+                        </div>
+                    </div>
+
+
+                    <div class="cardinfoday">
+                        <div class="cardsectioninfo">
+                            <p class="infocardtitle">Cet après midi il fera:</p>
+                            <div class="temp-txt">
+                                <span>${weather.Temperature.Metric.Value}</span>
+                                <span>&deg</span>
+                            </div>
+                        </div>
+                        <div class="cardsectioninfo">
+                            <p class="infocardtitle">Le soleil se couche à:</p>
+                            <span class="infocardhours">18h00</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+    
+    
     `;
 
 
@@ -169,8 +209,6 @@ changeContainerBackground(backgroundImage);
     const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
     icon.setAttribute('src', iconSrc);
 
-    let timeSrc = weather.IsDayTime ? 'img/day.svg' : 'img/night.svg';
-    time.setAttribute('src', timeSrc);
 
 
 
@@ -180,6 +218,8 @@ changeContainerBackground(backgroundImage);
     if (card.classList.contains('d-none')) {
         card.classList.remove('d-none');
     }
+
+
 
     console.log(data)
 
