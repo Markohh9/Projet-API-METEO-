@@ -102,11 +102,11 @@ const updateUI = (data) => {
         'night': {
             'Soleil': '../img/weather/sun-night.gif', //
             'Nuageux': '../img/weather/cloud-night.gif', //
-            'Pluie': '../img/weather/rain-night.gif',
-            'Vent': '../img/weather/wind-night.gif',
-            'Brume': '../img/weather/fog-night.gif',
-            'Neige': '../img/weather/snow-night.gif',
-            'Tempete': '../img/weather/storm-night.gif'
+            'Pluie': '../img/weather/rain-night.gif', //
+            'Vent': '../img/weather/wind-night.gif', //
+            'Brume': '../img/weather/fog-night.gif', //
+            'Neige': '../img/weather/snow-night.gif', //
+            'Tempete': '../img/weather/storm-night.gif' //
         }
     };
     
