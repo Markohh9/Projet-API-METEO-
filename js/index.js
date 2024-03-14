@@ -5,14 +5,7 @@ const icon = document.querySelector('.icon img');
 const resetBtn = document.getElementById('changeCityBtn');
 const displayForm = document.getElementById('formInput');
 
-
-
-const updateUI = (data) => {
-
-
-
-
-
+const updateUI = async (data) => {
     // destruct properties
     const {
         cityDets,
@@ -21,13 +14,7 @@ const updateUI = (data) => {
         sunset
     } = data;
 
-
-
-
-
-
     // Get Time of city //
-
     const getLocalTime = (timeZone) => {
         const currentTime = new Date();
         const timeOptions = {
@@ -39,7 +26,6 @@ const updateUI = (data) => {
         const formatter = new Intl.DateTimeFormat('fr-FR', timeOptions);
         return formatter.format(currentTime);
     }
-    getLocalTime();
 
     // Get Time of city //
     const cityTimeZone = cityDets.TimeZone.Name;
@@ -59,16 +45,12 @@ const updateUI = (data) => {
         }
     };
 
-
-    //
-
     // Get weather icon code
     const weatherIconCode = weather.WeatherIcon;
     console.log("Weather icon code:", weatherIconCode);
 
     // Atribute WeatherIconCode to Weather
     const getWeatherType = (weatherIconCode) => {
-
         const weatherTypes = {
             'Soleil': [1, 2, 3, 4, 30, 33, 34],
             'Nuageux': [5, 6, 7, 38],
@@ -88,9 +70,7 @@ const updateUI = (data) => {
         return 'Autre';
     };
 
-
     // Changing Background with hour and weather //
-
     const backgroundImages = {
         'day': {
             'Soleil': '../img/weather/sun-day.gif', 
@@ -133,7 +113,6 @@ const updateUI = (data) => {
     console.log("Chemin du fond d'écran:", backgroundImage);
 
     // Changing the background with the backgroundImage
-
     const changeContainerBackground = (backgroundImageUrl) => {
         const containerBody = document.querySelector('.container-body');
         containerBody.style.backgroundImage = `url(${backgroundImageUrl})`;
@@ -144,120 +123,53 @@ const updateUI = (data) => {
 
     changeContainerBackground(backgroundImage);
 
-
-    // get lat and long of the city//
-
-    const cityLat = cityDets.GeoPosition.Latitude;
-    const cityLong = cityDets.GeoPosition.Longitude;
-
-    console.log(cityLat)
-    console.log(cityLong)
-    console.log(getLocalTime(cityTimeZone))
-
-    // get sunset and sunrise with api //
-    async function getSun() {
-        const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${cityLat}&lng=${cityLong}&date=today`);
-        const result = await response.json();
-        console.log(result);
-    
-        const sunrise = result.results.sunrise;
-        const sunset = result.results.sunset;
-    
-        return {
-            sunrise,
-            sunset
-        };
-    }
-    
-    getSun().then(({ sunrise, sunset }) => {
-        // Appelez updateUI une seule fois ici, une fois que les données du lever et du coucher du soleil sont récupérées
-        updateUI({
-            cityDets,
-            weather,
-            sunrise,
-            sunset
-        });
-    }).catch(error => console.log(error));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // update UI when city selected
     card.innerHTML = `
-
     <div class="align-top-card">
         <div class="txt-top-card">
             <div class="weather-name">${weather.WeatherText}</div>
             <h5 class="city-name-desc">${cityDets.EnglishName}, ${cityDets.Country.EnglishName}, ${cityDets.AdministrativeArea.EnglishName}</h5>
         </div>
-
-        
         <div class="temp-txt">
             <span>${weather.Temperature.Metric.Value}</span>
             <span>&deg</span>
         </div>
     </div>
-
-            <div class="cardimgtemp">
-                <div class="infoday">
-
-
-                    <div class="cardinfoday">
-                        <div class="cardsectioninfo">
-                            <p class="infocardtitle">Ce matin il fera</p>
-                            <div class="temp-txt">
-                                <span>${weather.Temperature.Metric.Value}</span>
-                                <span>&deg</span>
-                            </div>
-                        </div>
-                        <div class="cardsectioninfo">
-                            <p class="infocardtitle">Le soleil se lève à:</p>
-                            <span class="infocardhours">${sunrise}</span>
-                        </div>
+    <div class="cardimgtemp">
+        <div class="infoday">
+            <div class="cardinfoday">
+                <div class="cardsectioninfo">
+                    <p class="infocardtitle">Ce matin il fera</p>
+                    <div class="temp-txt">
+                        <span>${weather.Temperature.Metric.Value}</span>
+                        <span>&deg</span>
                     </div>
-
-
-                    <div class="cardinfoday">
-                        <div class="cardsectioninfo">
-                            <p class="infocardtitle">Cet après midi il fera:</p>
-                            <div class="temp-txt">
-                                <span>${weather.Temperature.Metric.Value}</span>
-                                <span>&deg</span>
-                            </div>
-                        </div>
-                        <div class="cardsectioninfo">
-                            <p class="infocardtitle">Le soleil se couche à:</p>
-                            <span class="infocardhours">${sunset}</span>
-                        </div>
-                    </div>
-
-
+                </div>
+                <div class="cardsectioninfo">
+                    <p class="infocardtitle">Le soleil se lève à:</p>
+                    <span class="infocardhours">${sunrise}</span>
                 </div>
             </div>
-    
-    
+            <div class="cardinfoday">
+                <div class="cardsectioninfo">
+                    <p class="infocardtitle">Cet après midi il fera:</p>
+                    <div class="temp-txt">
+                        <span>${weather.Temperature.Metric.Value}</span>
+                        <span>&deg</span>
+                    </div>
+                </div>
+                <div class="cardsectioninfo">
+                    <p class="infocardtitle">Le soleil se couche à:</p>
+                    <span class="infocardhours">${sunset}</span>
+                </div>
+            </div>
+        </div>
+    </div>
     `;
 
-
     // update Day / Night icon and Images
-
     const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
     icon.setAttribute('src', iconSrc);
-
-
-
 
     // remove d-none class if city selected
     if (card.classList.contains('d-none')) {
@@ -267,30 +179,34 @@ const updateUI = (data) => {
         displayForm.style.display = 'none';
     }
 
+    console.log(data);
+};
 
-
-
-    console.log(data)
-
-
-
-
-}
+const getSun = async (cityLat, cityLong) => {
+    const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${cityLat}&lng=${cityLong}&date=today`);
+    const result = await response.json();
+    console.log(result);
+    const sunrise = result.results.sunrise;
+    const sunset = result.results.sunset;
+    return {
+        sunrise,
+        sunset
+    };
+};
 
 const updateCity = async (city) => {
-
     const cityDets = await getCity(city);
     const weather = await getWeather(cityDets.Key);
-
+    const { sunrise, sunset } = await getSun(cityDets.GeoPosition.Latitude, cityDets.GeoPosition.Longitude);
     return {
         cityDets,
-        weather
+        weather,
+        sunrise,
+        sunset
     };
-
 };
 
 cityForm.addEventListener('submit', e => {
-
     e.preventDefault();
 
     //get city value
@@ -301,7 +217,6 @@ cityForm.addEventListener('submit', e => {
     updateCity(city)
         .then(data => updateUI(data))
         .catch(error => console.log(error));
-        
 });
 
 resetBtn.addEventListener('click', () => {
