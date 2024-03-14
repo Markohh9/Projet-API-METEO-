@@ -183,16 +183,20 @@ const updateUI = async (data) => {
 };
 
 const getSun = async (cityLat, cityLong) => {
-    const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${cityLat}&lng=${cityLong}&date=today`);
+    const response = await fetch(`https://api.sunrise-sunset.org/json?lat=${cityLat}&lng=${cityLong}&date=today&formatted=0`);
     const result = await response.json();
     console.log(result);
-    const sunrise = result.results.sunrise;
-    const sunset = result.results.sunset;
+
+    const sunrise = new Date(result.results.sunrise).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false }).replace(':', 'h');
+    const sunset = new Date(result.results.sunset).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false }).replace(':', 'h');
+
     return {
         sunrise,
         sunset
     };
 };
+
+
 
 const updateCity = async (city) => {
     const cityDets = await getCity(city);
