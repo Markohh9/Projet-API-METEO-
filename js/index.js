@@ -1,6 +1,5 @@
 const cityForm = document.querySelector('form');
 const card = document.querySelector('.card');
-const details = document.querySelector('.details');
 const icon = document.querySelector('.icon img');
 const resetBtn = document.getElementById('changeCityBtn');
 const displayForm = document.getElementById('formInput');
@@ -11,7 +10,8 @@ const updateUI = async (data) => {
         cityDets,
         weather,
         sunrise,
-        sunset
+        sunset,
+        forecast
     } = data;
 
     // Get Time of city //
@@ -123,6 +123,25 @@ const updateUI = async (data) => {
 
     changeContainerBackground(backgroundImage);
 
+// Get morning and afternoon temperature from forecast
+const getMorningAfternoonTemperature = (forecast) => {
+    // Fonction pour convertir les températures en Celsius
+    const convertToCelsius = (tempInOtherUnit) => {
+        return Math.floor((tempInOtherUnit - 32) * 5 / 9); // Conversion de Fahrenheit à Celsius et arrondi vers le bas
+    };
+
+    const morningTemperature = Math.floor((forecast[0].Temperature.Value - 32) * 5 / 9);
+    const afternoonTemperature = Math.floor((forecast[5].Temperature.Value - 32) * 5 / 9);
+    return { morningTemperature, afternoonTemperature };
+};
+
+const { morningTemperature, afternoonTemperature } = getMorningAfternoonTemperature(forecast);
+console.log("Morning temperature:", morningTemperature);
+console.log("Afternoon temperature:", afternoonTemperature);
+
+
+
+
     // update UI when city selected
     card.innerHTML = `
     <div class="align-top-card">
@@ -141,7 +160,7 @@ const updateUI = async (data) => {
                 <div class="cardsectioninfo">
                     <p class="infocardtitle">Ce matin il fera</p>
                     <div class="temp-txt">
-                        <span>${weather.Temperature.Metric.Value}</span>
+                        <span>${morningTemperature}</span>
                         <span>&deg</span>
                     </div>
                 </div>
@@ -154,7 +173,7 @@ const updateUI = async (data) => {
                 <div class="cardsectioninfo">
                     <p class="infocardtitle">Cet après midi il fera:</p>
                     <div class="temp-txt">
-                        <span>${weather.Temperature.Metric.Value}</span>
+                        <span>${afternoonTemperature}</span>
                         <span>&deg</span>
                     </div>
                 </div>
@@ -196,17 +215,17 @@ const getSun = async (cityLat, cityLong) => {
     };
 };
 
-
-
 const updateCity = async (city) => {
     const cityDets = await getCity(city);
     const weather = await getWeather(cityDets.Key);
     const { sunrise, sunset } = await getSun(cityDets.GeoPosition.Latitude, cityDets.GeoPosition.Longitude);
+    const forecast = await getHourlyForecast(cityDets.Key); // Appel à la fonction pour obtenir les prévisions horaires
     return {
         cityDets,
         weather,
         sunrise,
-        sunset
+        sunset,
+        forecast
     };
 };
 
