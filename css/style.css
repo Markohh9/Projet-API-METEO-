@@ -2,28 +2,25 @@
 
 
 
+
 .container-body {
-    justify-content: center;
-    display: flex;
-    background-image: url('../img/weather/cloud-day.gif');
-    background-size: cover;
-    opacity: 1;
-    background-repeat: no-repeat;
-    z-index: 1;
-    -webkit-user-select: none;
-        -webkit-touch-callout: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+        justify-content: center;
+        display: flex;
+        background-image: url('../img/weather/background-default.png');
+        background-size: cover;
+        opacity: 1;
+        background-repeat: no-repeat;
+        z-index: 1;
+        -webkit-user-select: none;
+            -webkit-touch-callout: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        height: 100vh; /* vh signifie viewport height, c'est-à-dire la hauteur de l'écran */
+        background-size: cover; /* pour couvrir toute la surface de l'élément */
+        background-position: center; /* centrer l'image */
 }
 
-.opacity-body{
-    opacity: 0.4;
-    background-color: grey;
-    height: 100vh;
-    width: 100%;
-    z-index: 2;
-}
 
 
 
@@ -35,7 +32,7 @@
     font-size: 4em;
     justify-content: center;
     display: flex;
-    color: whitesmoke;
+    color: #eaeaec;
 }
 
 .classform{
@@ -50,19 +47,19 @@
     margin-bottom: 16px;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
-    color: whitesmoke;
+    color: #eaeaec;
 }
 
 
 
 input[type=text] {
-    border: 2px solid whitesmoke;
+    border: 2px solid #1e286d;
     border-radius: 8px;
-    background-color: #1e436d;
+    background-color: #1e466dc2;
   }
 
   input[type=text]:focus {
-    border: 3px solid whitesmoke;
+    border: 3px solid #1e286d;
   }
 
 .form-input{
@@ -71,18 +68,18 @@ input[type=text] {
     width: 400px;
     height: 48px;
     font-family: "Montserrat", sans-serif;
-    color: whitesmoke;
+    color: #eaeaec;
     padding-left: 16px;
 }
 
 .resetBtn{
     display: none;
-  background-color: #405cf5;
+  background-color: rgba(30, 41, 109, 1);;
   border-radius: 6px;
   border-width: 0;
-  color: #fff;
+  color: #eaeaec;
   cursor: pointer;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 100%;
   height: 44px;
   line-height: 1.15;
@@ -94,10 +91,11 @@ input[type=text] {
 
 .card{
     border-radius: 19px;
-    border: solid 2px;
+    border: solid 2px #eaeaec;
     height: 515px;
     padding: 8px;
     margin-bottom: 142px;
+    background-color: rgba(8, 11, 22, 0.5); /* Couleur avec une opacité de 50% */
 }
 
 .weather-name{
@@ -108,7 +106,7 @@ input[type=text] {
     margin-bottom: 8px;
     margin-left: 0;
     margin-top: 8px;
-    color: whitesmoke;
+    color: #eaeaec;
 }
 
 .city-name-desc{
@@ -119,7 +117,7 @@ input[type=text] {
     margin-left: 2px;
     margin-bottom: 8px;
     margin-top: 8px;
-    color: whitesmoke;
+    color: #eaeaec;
 }
 
 .align-top-card{
@@ -142,7 +140,7 @@ input[type=text] {
     display: flex;
     align-items: center;
     margin-left: 16px;
-    color: whitesmoke;
+    color: #eaeaec;
 }
 
 .details{
@@ -183,8 +181,8 @@ input[type=text] {
 .cardsectioninfo{
     width: auto;
     height: 200px;
-    background-color: red;
-    border: 1px solid white;
+    background-color: rgba(30, 41, 109, 0.25);
+    border: 1px solid #eaeaec;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -196,13 +194,23 @@ input[type=text] {
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 1em;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
+    color: #eaeaec;
 }
 
 .infocardhours{
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 2em;
+    color: #eaeaec;
+}
+
+.weatherofpartday{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    margin-top: 16px;
+    color: #eaeaec;
 }
 
 .icon{

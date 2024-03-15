@@ -158,11 +158,12 @@ console.log("Afternoon temperature:", afternoonTemperature);
         <div class="infoday">
             <div class="cardinfoday">
                 <div class="cardsectioninfo">
-                    <p class="infocardtitle">Ce matin il fera</p>
+                    <p class="infocardtitle">Ce matin il devrait faire:</p>
                     <div class="temp-txt">
                         <span>${morningTemperature}</span>
                         <span>&deg</span>
                     </div>
+                    <span class="weatherofpartday">${getWeatherType(forecast[0].WeatherIcon)}</span>
                 </div>
                 <div class="cardsectioninfo">
                     <p class="infocardtitle">Le soleil se lève à:</p>
@@ -171,11 +172,12 @@ console.log("Afternoon temperature:", afternoonTemperature);
             </div>
             <div class="cardinfoday">
                 <div class="cardsectioninfo">
-                    <p class="infocardtitle">Cet après midi il fera:</p>
+                    <p class="infocardtitle">Cet après midi il devrait faire:</p>
                     <div class="temp-txt">
                         <span>${afternoonTemperature}</span>
                         <span>&deg</span>
                     </div>
+                    <span class="weatherofpartday">${getWeatherType(forecast[5].WeatherIcon)}</span>
                 </div>
                 <div class="cardsectioninfo">
                     <p class="infocardtitle">Le soleil se couche à:</p>
