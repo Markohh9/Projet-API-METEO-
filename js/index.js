@@ -74,7 +74,7 @@ const updateUI = async (data) => {
     const backgroundImages = {
         'day': {
             'Soleil': '../img/weather/sun-day.gif', 
-            'Nuageux': '../img/weather/cloud-day.gif', 
+            'Nuageux': 'https://raw.githubusercontent.com/Markohh9/Projet-API-METEO-/main/img/weather/cloud-day.gif', 
             'Pluie': '../img/weather/rain-day.gif', 
             'Vent': '../img/weather/wind-day.gif', 
             'Brume': '../img/weather/fog-day.gif', 
