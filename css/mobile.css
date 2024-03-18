@@ -1,5 +1,47 @@
 @media screen and (max-width: 768px)
 {
 
+    .container-body {
+        padding: 32px;
+    }
 
+
+    .form-input{
+        width: 332px;
+    }
+
+    .form-txt{
+        text-align: center;
+
+    }
+
+    .card{
+        height: auto;
+        width: auto;
+    margin: auto;
+    
+    }
+
+    .cardsectioninfo{
+        height: 160px;
+        width: 170px;
+    }
+
+    .infocardtitle{
+    }
+    
+
+    .cardinfoday{
+        width: auto;
+    }
+
+    .infoday{
+        flex-direction: row;
+        width: auto;
+        height: auto;
+    }
+
+    .temp-txt{
+        font-size: 2em;
+    }
 }
