@@ -101,7 +101,7 @@ const updateUI = async (data) => {
         }
     };
 
-    // Get Time of day and weather type
+    // Get Time of day and weather type.
     const timeOfDay = getTimeOfDay(localTime);
     const weatherType = getWeatherType(weatherIconCode);
 
